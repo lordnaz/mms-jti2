@@ -10,7 +10,7 @@ trait WithDataTable {
         switch ($this->name) {
             case 'user':
                 $users = $this->model::search($this->search)
-                    ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                    ->orderBy($this->sortField, $this->sortAsc ? 'desc' : 'asc')
                     ->paginate($this->perPage);
 
                 return [

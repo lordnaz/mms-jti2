@@ -30,7 +30,7 @@ return [
         'array'   => 'Isian :attribute harus antara :min dan :max item.',
     ],
     'boolean'              => 'Isian :attribute harus berupa true atau false',
-    'confirmed'            => 'Konfirmasi :attribute tidak cocok.',
+    'confirmed'            => 'Invalid :attribute combination.',
     'date'                 => 'Isian :attribute bukan tanggal yang valid.',
     'date_equals'          => 'Isian :attribute harus tanggal yang sama dengan :date.',
     'date_format'          => 'Isian :attribute tidak cocok dengan format :format.',

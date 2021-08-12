@@ -1,5 +1,6 @@
 @php
 $user = auth()->user();
+#echo request();
 @endphp
 
 <div class="navbar-bg"></div>
@@ -21,10 +22,10 @@ $user = auth()->user();
                 <a href="/user/profile" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-                @if (request()->get('is_admin'))
-                <a href="/setting" class="dropdown-item has-icon">
-                    <i class="fas fa-cog"></i> Setting
-                </a>
+                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                    <a href="/user/api-tokens" class="dropdown-item has-icon">
+                        <i class="fas fa-cog"></i> API
+                    </a>
                 @endif
                 <div class="dropdown-divider"></div>
                 <form method="POST" action="{{ route('logout') }}">

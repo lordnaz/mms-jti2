@@ -56,6 +56,15 @@
 
         @stack('modals')
 
+        <footer class="main-footer">
+            <div class="footer-left">
+            Copyright &copy; 2021 <div class="bullet"></div> Develop By <a href="https://github.com/lordnaz">Muhamad Nazrul Hanif</a>
+            </div>
+            <div class="footer-right">
+            1.1.0
+            </div>
+        </footer>
+
         <!-- General JS Scripts -->
         <script src="{{ asset('stisla/js/modules/jquery.min.js') }}"></script>
         <script defer async src="{{ asset('stisla/js/modules/popper.js') }}"></script>

@@ -23,8 +23,13 @@
             <div class="mt-4">
                 <x-jet-label value="{{ __('Password') }}" />
                 <x-jet-input class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                @if (Route::has('password.request'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 float-right" style="margin-top: 15px;" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
             </div>
-
+            <br>
             <div class="block mt-4">
                 <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox" name="remember">
@@ -33,11 +38,9 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                    {{ __('New Registration?') }}
+                </a>
 
                 <x-jet-button class="ml-4">
                     {{ __('Login') }}
