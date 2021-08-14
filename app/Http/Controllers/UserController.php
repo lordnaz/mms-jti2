@@ -12,4 +12,5 @@ class UserController extends Controller
             'user' => User::class
         ]);
     }
+
 }

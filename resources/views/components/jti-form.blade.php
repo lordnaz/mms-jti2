@@ -16,7 +16,7 @@
                         {{@csrf_field()}}
                             <div class="form-group">
                                 <label>PO No</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="po_no">
                             </div>
 
                             <div class="form-group">
@@ -68,15 +68,15 @@
                                 <label class="form-label">Mode</label>
                                 <div class="selectgroup w-100">
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="value" value="Land" class="selectgroup-input" checked="">
+                                        <input type="radio" name="mode" value="Land" class="selectgroup-input" checked="">
                                         <span class="selectgroup-button">Land</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="value" value="Sea" class="selectgroup-input">
+                                        <input type="radio" name="mode" value="Sea" class="selectgroup-input">
                                         <span class="selectgroup-button">Sea</span>
                                     </label>
                                     <label class="selectgroup-item">
-                                        <input type="radio" name="value" value="Air" class="selectgroup-input">
+                                        <input type="radio" name="mode" value="Air" class="selectgroup-input">
                                         <span class="selectgroup-button">Air</span>
                                     </label>
                                 </div>
@@ -90,7 +90,7 @@
                                         <i class="fas fa-calendar"></i>
                                     </div>
                                     </div>
-                                    <input type="text" name="dates" class="form-control daterange-cus">
+                                    <input type="text" name="date_range" class="form-control daterange-cus">
                                 </div>
                             </div>
 
@@ -119,7 +119,7 @@
 
                             <div class="form-group">
                                 <label>Job Detail Instruction</label>
-                                <textarea id="job_instruction" name="job_instruction" rows="4" class="form-control"></textarea>
+                                <textarea id="job_details" name="job_details" rows="4" class="form-control"></textarea>
                             </div>
 
                             <div class="form-group">
@@ -148,7 +148,7 @@
                             <div class="form-group">
                                 <div class="control-label">Toggle to choose required task</div>
                                 <label class="mt-2">
-                                    <input type="checkbox" id="packingSwitch" name="custom-switch-checkbox" class="custom-switch-input">
+                                    <input type="checkbox" id="packingSwitch" name="packingSwitch" class="custom-switch-input">
                                     <span class="custom-switch-indicator"></span>
                                     <span class="custom-switch-description">1. PACKING</span>
                                 </label>
@@ -158,7 +158,7 @@
                             <div id="packing_panel">
                                 <div class="form-group">
                                     <label>1.1 - International</label>
-                                    <select class="form-control selectric" multiple="">
+                                    <select name="pack_inter[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
                                         <option value="inter_household">Household effects</option>
                                         <option value="inter_office">Office goods</option>
@@ -169,7 +169,7 @@
 
                                 <div class="form-group">
                                     <label>1.2 - Domestic (Sabah/ Sarawak)</label>
-                                    <select class="form-control selectric" multiple="">
+                                    <select name="pack_dome[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
                                         <option value="dome_household">Household effects</option>
                                         <option value="dome_office">Office goods</option>
@@ -180,7 +180,7 @@
 
                                 <div class="form-group">
                                     <label>1.3 - Domestic (Penisular Malaysia)</label>
-                                    <select class="form-control selectric" multiple="">
+                                    <select name="pack_domw[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
                                         <option value="domw_household">Household effects</option>
                                         <option value="domw_office">Office goods</option>
@@ -191,7 +191,7 @@
 
                                 <div class="form-group">
                                     <label>1.4 - Storage</label>
-                                    <select class="form-control selectric" multiple="">
+                                    <select name="pack_storage[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
                                         <option value="storage_household">Household effects</option>
                                         <option value="storage_office">Office goods</option>
@@ -202,14 +202,14 @@
 
                                 <div class="form-group">
                                     <label>1.5 - Others</label>
-                                    <input type="text" name="others_details" id="others_details" class="form-control">
+                                    <input type="text" name="pack_other" id="others_details" class="form-control">
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <div class="control-label">Toggle to choose required task</div>
                                 <label class="mt-2">
-                                    <input type="checkbox" id="truckingSwitch" name="custom-switch-checkbox" class="custom-switch-input">
+                                    <input type="checkbox" id="truckingSwitch" name="truckingSwitch" class="custom-switch-input">
                                     <span class="custom-switch-indicator"></span>
                                     <span class="custom-switch-description">2. TRUCKING</span>
                                 </label>
@@ -218,7 +218,7 @@
                             <div class="form-group">
                                 <div class="control-label">Toggle to choose required task</div>
                                 <label class="mt-2">
-                                    <input type="checkbox" id="shipmentSwitch" name="custom-switch-checkbox" class="custom-switch-input">
+                                    <input type="checkbox" id="shipmentSwitch" name="shipmentSwitch" class="custom-switch-input">
                                     <span class="custom-switch-indicator"></span>
                                     <span class="custom-switch-description">3. SHIPMENT</span>
                                 </label>
@@ -227,7 +227,7 @@
                             <div id="shipment_panel">
                                 <div class="form-group">
                                     <label>3.1 - Export</label>
-                                    <select class="form-control selectric" multiple="">
+                                    <select name="ship_export[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
                                         <option value="exp_container">Container (FCL)</option>
                                         <option value="exp_console">Console (LCL)</option>
@@ -237,7 +237,7 @@
 
                                 <div class="form-group">
                                     <label>3.2 - Import</label>
-                                    <select class="form-control selectric" multiple="">
+                                    <select name="ship_import[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
                                         <option value="imp_container">Container (FCL)</option>
                                         <option value="imp_console">Console (LCL)</option>
@@ -249,7 +249,7 @@
                             <div class="form-group">
                                 <div class="control-label">Toggle to choose required task</div>
                                 <label class="mt-2">
-                                    <input type="checkbox" id="destinationSwitch" name="custom-switch-checkbox" class="custom-switch-input">
+                                    <input type="checkbox" id="destinationSwitch" name="destinationSwitch" class="custom-switch-input">
                                     <span class="custom-switch-indicator"></span>
                                     <span class="custom-switch-description">4. DESTINATION</span>
                                 </label>
@@ -258,7 +258,7 @@
                             <div id="destination_panel">
                                 <div class="form-group">
                                     <label>4.1 - Destination</label>
-                                    <select class="form-control selectric" multiple="">
+                                    <select name="destination[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
                                         <option value="exp_container">Unpack</option>
                                         <option value="exp_console">Rearrange</option>
@@ -420,7 +420,7 @@
 
                             <div class="form-group">
                                 <label>Equipment List</label>
-                                <select class="form-control selectric" multiple="">
+                                <select name="equipmentList[]" class="form-control selectric" multiple="">
                                     <option value="" selected="true" disabled="">Can choose multiple</option>
                                     <option value="Two Wheel Trolley">Two Wheel Trolley</option>
                                     <option value="Four Wheel Trolley">Four Wheel Trolley</option>
@@ -452,64 +452,20 @@
                                 </select>
                             </div>
 
+                            <div class="form-group">
+                                <label>Issued By</label>
+                                <input readonly value="{{$issued_by->fullname}}" type="text" name="sales_guy" id="sales_guy" class="form-control">
+                                <p class="mt-2 text-sm text-red-500">
+                                    Sales person name
+                                </p>
+                            </div>
 
                             <div class="form-group">
-                                <label>Phone Number (US Format)</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-phone"></i>
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control phone-number">
-                                </div>
+                                <label>Special Instruction</label>
+                                <textarea id="special_instruct" name="special_instruct" rows="3" class="form-control"></textarea>
                             </div>
-                            <div class="form-group">
-                            <label>Password Strength</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="fas fa-lock"></i>
-                                </div>
-                                </div>
-                                <input type="password" class="form-control pwstrength" data-indicator="pwindicator">
-                            </div>
-                            <div id="pwindicator" class="pwindicator">
-                                <div class="bar"></div>
-                                <div class="label"></div>
-                            </div>
-                            </div>
-                            <div class="form-group">
-                            <label>Currency</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    $
-                                </div>
-                                </div>
-                                <input type="text" class="form-control currency">
-                            </div>
-                            </div>
-                            <div class="form-group">
-                            <label>Purchase Code</label>
-                            <input type="text" class="form-control purchase-code" placeholder="ASDF-GHIJ-KLMN-OPQR">
-                            </div>
-                            <div class="form-group">
-                            <label>Invoice</label>
-                            <input type="text" class="form-control invoice-input">
-                            </div>
-                            <div class="form-group">
-                            <label>Date</label>
-                            <input type="text" class="form-control datemask" placeholder="YYYY/MM/DD">
-                            </div>
-                            <div class="form-group">
-                            <label>Credit Card</label>
-                            <input type="text" class="form-control creditcard">
-                            </div>
-                            <div class="form-group">
-                            <label>Tags</label>
-                            <input type="text" class="form-control inputtags">
-                            </div>
+                            
+                            <button type="submit" class="btn btn-icon icon-left btn-success float-right"><i class="fas fa-check"></i> Submit</button>
 
                         </form>
                     </div>

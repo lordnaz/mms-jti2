@@ -14,6 +14,7 @@ use App\Models\UserSales as UserSales;
 use App\Models\StateSales as States;
 use App\Models\CountrySales as Countries;
 use App\Models\JtiCreatedSales as JtiCreated;
+use App\Models\JtiJob as JtiJob;
 
 class JtiController extends Controller
 {
@@ -86,92 +87,37 @@ class JtiController extends Controller
     public function submitForm(Request $req){
 
         $data = $req->input();
-    
 
-        $currentdt = date('d-m-Y H:i:s');
+        // item under packing
+        $pack_inter = $req->pack_inter;
+        $pack_inter = ($req->pack_inter) ? $pack_inter = implode(',', $pack_inter) : $pack_inter = "";
         
-        // Job Descript List Section 
-        $jobDescArr = array();
-        $jobDescList = "";
+        $pack_dome = $req->pack_dome;
+        $pack_dome = ($req->pack_dome) ? $pack_dome = implode(',', $pack_dome) : $pack_dome = "";
 
-        $packing = $req->packing;
-        if($packing != null || $packing != ""){
-            array_push($jobDescArr, $packing);
-        }
+        $pack_domw = $req->pack_domw;
+        $pack_domw = ($req->pack_domw) ? $pack_domw = implode(',', $pack_domw) : $pack_domw = "";
 
-        $unpacking = $req->unpacking;
-        if($unpacking != null || $unpacking != ""){
-            array_push($jobDescArr, $unpacking);
-        }
+        $pack_storage = $req->pack_storage;
+        $pack_storage = ($req->pack_storage) ? $pack_storage = implode(',', $pack_storage) : $pack_storage = "";
 
-        $removals = $req->removals;
-        if($removals != null || $removals != ""){
-            array_push($jobDescArr, $removals);
-        }
+        $pack_other = $req->pack_other;
 
-        $trucking = $req->trucking;
-        if($trucking != null || $trucking != ""){
-            array_push($jobDescArr, $trucking);
-        }
 
-        $shipment = $req->shipment;
-        if($shipment != null || $shipment != ""){
-            array_push($jobDescArr, $shipment);
-        }
-
-        $import = $req->import;
-        if($import != null || $import != ""){
-            array_push($jobDescArr, $import);
-        }
-
-        $console = $req->console;
-        if($console != null || $console != ""){
-            array_push($jobDescArr, $console);
-        }
-
-        $intermove = $req->intermove;
-        if($intermove != null || $intermove != ""){
-            array_push($jobDescArr, $intermove);
-        }
-
-        $local = $req->local;
-        if($local != null || $local != ""){
-            array_push($jobDescArr, $local);
-        }
-
-        $international = $req->international;
-        if($international != null || $international != ""){
-            array_push($jobDescArr, $international);
-        }
-
-        $household = $req->household;
-        if($household != null || $household != ""){
-            array_push($jobDescArr, $household);
-        }
-
-        $vehicle = $req->vehicle;
-        if($vehicle != null || $vehicle != ""){
-            array_push($jobDescArr, $vehicle);
-        }
-
-        $office_good = $req->office_good;
-        if($office_good != null || $office_good != ""){
-            array_push($jobDescArr, $office_good);
-        }
-
-        foreach($jobDescArr as $task){
-            $jobDescList .= $task;
-          
-            if (end($jobDescArr) == $task) {
-                # code...
-            }
-            else{
-                $jobDescList .= ", ";
-            }
+        // item under shipment
+        $ship_export = $req->ship_export;
+        $ship_export = ($req->ship_export) ? $ship_export = implode(',', $ship_export) : $ship_export = "";
         
-            // $jti_subtask=$process->createJTIsubTask($jobid,$task);
-        }
+        $ship_import = $req->ship_import;
+        $ship_import = ($req->ship_import) ? $ship_import = implode(',', $ship_import) : $ship_import = "";
 
+        // item under destination
+        $destination = $req->destination;
+        $destination = ($req->destination) ? $destination = implode(',', $destination) : $destination = "";
+
+        // item under equipment list
+        $equipmentList = $req->equipmentList;
+        $equipmentList = ($req->equipmentList) ? $equipmentList = implode(',', $equipmentList) : $equipmentList = "";
 
         // Material List Section 
         $MaterialArr = array();
@@ -286,154 +232,95 @@ class JtiController extends Controller
         }
 
 
-        // Job Descript List Section 
-        $EquipmentArr = array();
-        $EquipmentList = "";
-
-        $e1 = $req->e1;
-        if($e1 != null || $e1 != ""){
-            array_push($EquipmentArr, $e1);
-        }
-
-        $e2 = $req->e2;
-        if($e2 != null || $e2 != ""){
-            array_push($EquipmentArr, $e2);
-        }
-
-        $e3 = $req->e3;
-        if($e3 != null || $e3 != ""){
-            array_push($EquipmentArr, $e3);
-        }
-
-        $e4 = $req->e4;
-        if($e4 != null || $e4 != ""){
-            array_push($EquipmentArr, $e4);
-        }
-
-        $e5 = $req->e5;
-        if($e5 != null || $e5 != ""){
-            array_push($EquipmentArr, $e5);
-        }
-
-        $e6 = $req->e6;
-        if($e6 != null || $e6 != ""){
-            array_push($EquipmentArr, $e6);
-        }
-
-        $e7 = $req->e7;
-        if($e7 != null || $e7 != ""){
-            array_push($EquipmentArr, $e7);
-        }
-
-        $e8 = $req->e8;
-        if($e8 != null || $e8 != ""){
-            array_push($EquipmentArr, $e8);
-        }
-
-        $e9 = $req->e9;
-        if($e9 != null || $e9 != ""){
-            array_push($EquipmentArr, $e9);
-        }
-
-        $e10 = $req->e10;
-        if($e10 != null || $e10 != ""){
-            array_push($EquipmentArr, $e10);
-        }
-
-        $e11 = $req->e11;
-        if($e11 != null || $e11 != ""){
-            array_push($EquipmentArr, $e11);
-        }
-
-        $e12 = $req->e12;
-        if($e12 != null || $e12 != ""){
-            array_push($EquipmentArr, $e12);
-        }
-
-        $e13 = $req->e13;
-        if($e13 != null || $e13 != ""){
-            array_push($EquipmentArr, $e13);
-        }
-
-        $e14 = $req->e14;
-        if($e14 != null || $e14 != ""){
-            array_push($EquipmentArr, $e14);
-        }
-
-
-        foreach($EquipmentArr as $equipment){
-            $EquipmentList .= $equipment;
-          
-            if (end($EquipmentArr) == $equipment) {
-                # code...
-            }
-            else{
-                $EquipmentList .= ", ";
-            }
-        
-            // $jti_subtask=$process->createJTIsubTask($jobid,$task);
-        }
-
-        // return $EquipmentList;
-
         //file attachment section
         $file = $req->file('file-upload');
-        $po_encoded = base64_encode(file_get_contents($req->file('file-upload')));
+        // $po_encoded = base64_encode(file_get_contents($req->file('file-upload')));
+        // $mime_type = $fil?e->getClientmimeType();
+        $file_name = $file->getClientoriginalName();
         $mime_type = $file->getClientmimeType();
 
-        $po_string = "data:".$mime_type.";base64,".$po_encoded;
-
+        // generate JTI running no, later need to enhance
         $count = JtiPlan::count();
-
         $count++;
-
         $gen_jti = "JTI_".$count;
 
-        $jtiplan = new JtiPlan;
+        // set doc path
+        $doc_path = $gen_jti."/po_doc/".$file_name;
 
-        $jtiplan->quotation_no = $req->quote_no;
-        $jtiplan->running_no = $gen_jti;
-        $jtiplan->po_no = $req->po_no;
-        $jtiplan->po_attachment = $po_string;
-        $jtiplan->issued_by = $req->sales_guy;
-        $jtiplan->assign_to = $req->assignto;
-        $jtiplan->company_name = $req->company_name;
-        $jtiplan->pic_name = $req->pic_name;
-        $jtiplan->company_address = $req->address;
-        $jtiplan->contact = $req->contact;
-        $jtiplan->volume = $req->est_volume;
-        $jtiplan->mode = $req->mode;
-        $jtiplan->start_date = $req->start_date;
-        $jtiplan->end_date = $req->end_date;
-        $jtiplan->period = $req->period;
-        $jtiplan->job_list = $jobDescList;
-        $jtiplan->from_destination = $req->from;
-        $jtiplan->to_destination = $req->to;
-        $jtiplan->job_details = $req->job_instruction;
-        $jtiplan->manpower = $req->manpower;
-        $jtiplan->trucks = $req->trucks;
-        $jtiplan->material_list = $MaterialList;
-        $jtiplan->equipment_list = $EquipmentList;
-        $jtiplan->special_instruction = $req->special_instruct;
-        $jtiplan->created_at = $currentdt;
-        $jtiplan->updated_at = $currentdt;
+        // $po_string = "data:".$mime_type.";base64,".$po_encoded;
 
-        $jtiplan->save();
+        $packingSwitch = ($req->packingSwitch) ? true : false;
+        $truckingSwitch = ($req->truckingSwitch) ? true : false;
+        $shipmentSwitch = ($req->shipmentSwitch) ? true : false;
+        $destinationSwitch = ($req->destinationSwitch) ? true : false;
 
-        // check jti if created
-        $exists = JtiPlan::where('quotation_no', $req->quote_no)->exists();
+        // create app_doc inside public folder
+        if ($file->move('jti_doc/'.$gen_jti.'/po_doc', $file_name)) {
+            
+            $currentdt = date('d-m-Y H:i:s');
 
-        if($exists){
-            $jti_created = new JtiCreated;
+            $jtiplan = new JtiPlan;
 
-            $jti_created->quote_no = $req->quote_no;
-            $jti_created->jti_no = $gen_jti;
-            $jti_created->po_no = $req->po_no;
-            $jti_created->created_at = $currentdt;
+            $dateRange = explode( '-', $req->date_range );
+            $start_date = $dateRange[0]."-".$dateRange[1]."-".$dateRange[2];
+            $end_date = $dateRange[3]."-".$dateRange[4]."-".$dateRange[5];
 
-            $jti_created->save();
-        }
-        // JtiCreated
+            $jtiplan->quotation_no = $req->quote_no;
+            $jtiplan->running_no = $gen_jti;
+            $jtiplan->po_no = $req->po_no;
+            $jtiplan->po_path = $doc_path;
+            $jtiplan->issued_by = $req->sales_guy;
+            $jtiplan->assign_to = $req->assignto;
+            $jtiplan->company_name = $req->company_name;
+            $jtiplan->pic_name = $req->pic_name;
+            $jtiplan->company_address = $req->address;
+            $jtiplan->contact = $req->contact;
+            $jtiplan->volume = $req->est_volume;
+            $jtiplan->mode = $req->mode;
+            $jtiplan->start_date = $start_date;
+            $jtiplan->end_date = $end_date;
+            $jtiplan->period = $req->period;
+            $jtiplan->from_destination = $req->from;
+            $jtiplan->to_destination = $req->to;
+            $jtiplan->job_details = $req->job_details;
+            $jtiplan->manpower = $req->manpower;
+            $jtiplan->trucks = $req->trucks;
+            $jtiplan->packing_job = $packingSwitch;
+            $jtiplan->trucking_job = $truckingSwitch;
+            $jtiplan->shipment_job = $shipmentSwitch;
+            $jtiplan->destination_job = $destinationSwitch;
+            $jtiplan->pack_inter = $pack_inter;
+            $jtiplan->pack_dome = $pack_dome;
+            $jtiplan->pack_domw = $pack_domw;
+            $jtiplan->pack_storage = $pack_storage;
+            $jtiplan->pack_other = $pack_other;
+            $jtiplan->ship_export = $ship_export;
+            $jtiplan->ship_import = $ship_import;
+            $jtiplan->destination = $destination;
+            $jtiplan->material_list = $MaterialList;
+            $jtiplan->equipment_list = $equipmentList;
+            $jtiplan->special_instruction = $req->special_instruct;
+            $jtiplan->created_at = $currentdt;
+            $jtiplan->updated_at = $currentdt;
+
+            $jtiplan->save();
+
+            // check jti if created
+            $exists = JtiPlan::where('quotation_no', $req->quote_no)->exists();
+
+            if($exists){
+                // update marketing jti db 
+                $jti_created = new JtiCreated;
+
+                $jti_created->quote_no = $req->quote_no;
+                $jti_created->jti_no = $gen_jti;
+                $jti_created->po_no = $req->po_no;
+                $jti_created->created_at = $currentdt;
+
+                $jti_created->save();
+            }
+            // JtiCreated
+        };
 
         return redirect()->route('jti_form', ['quote_no' => $req->quote_no]);
     }
