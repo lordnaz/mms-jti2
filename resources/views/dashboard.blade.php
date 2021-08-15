@@ -11,8 +11,6 @@
         <x-dashboard-table :posts="$posts"></x-dashboard-table>
     </div>
     
-
-
 </x-app-layout>
 
 <script>
@@ -58,6 +56,8 @@ $("#table-2").dataTable({
     { "sortable": false, "targets": [0,2,3] }
   ]
 });
+
+// $('#example').tooltip({ boundary: 'window' })
 
     
 });

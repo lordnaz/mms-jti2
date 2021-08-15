@@ -1,7 +1,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h4>Daily Summary</h4>
+        <h4>Task List</h4>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -46,10 +46,41 @@
                                 @if($post->new_flag == true)
                                     <div class="badge badge-danger">New</div>
                                 @else
-                                    <div class="badge badge-info">Open</div>
+                                    <div class="badge badge-success">Open</div>
                                 @endif 
                             </td>
-                            <td><a href="#" class="btn btn-dark">Detail</a></td>
+                            <td>
+                                <a role="button" href="{{route('jti_actual', $post->running_no)}}" 
+                                class="btn btn-icon btn-info" 
+                                data-toggle="tooltip" 
+                                data-placement="top" 
+                                title="Check & verify">
+                                    <i class="far fa-check-circle"></i>
+                                    @if($post->new_flag == true)
+                                        Confirm
+                                    @else
+                                        View
+                                    @endif 
+                                    
+                                </a>
+
+                                @if($post->new_flag != true)
+                                    <a role="button" href="{{route('jti_actual', $post->running_no)}}" 
+                                    class="btn btn-icon btn-warning" 
+                                    data-toggle="tooltip" 
+                                    data-placement="top" 
+                                    title="Create & view tracker">
+                                        <i class="fas fa-stream"></i>
+                                        Tracker
+                                    </a>
+                                @endif
+                                
+                            
+                                {{-- <a href="#" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a> --}}
+                                {{-- <a href="#" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a> --}}
+                                {{-- <a role="button" href="/user/edit/{{ $user->id }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a> --}}
+                                {{-- <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a> --}}
+                            </td>
                         </tr>
                     @endforeach
                     

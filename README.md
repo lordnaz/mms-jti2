@@ -1,3 +1,6 @@
+# Run specific migration file
+php artisan migrate --path=./database/migrations/2021_08_15_191647_create_manpowers_table.php
+
 # Laravel 8 + Stisla + Jetstream + Livewire
 we love Stisla Admin Template and Laravel 8 let's make them love each other.
 

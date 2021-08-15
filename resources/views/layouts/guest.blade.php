@@ -47,7 +47,7 @@
 
         <footer class="main-footer" style="margin-top: 0px;">
             <div class="footer-left">
-            Copyright &copy; 2021 <div class="bullet"></div> Develop By <a href="https://github.com/lordnaz">Muhamad Nazrul Hanif</a>
+            Copyright &copy; 2021 <div class="bullet"></div> Develop By <a href="https://github.com/lordnaz" target="_blank">Muhamad Nazrul Hanif</a>
             </div>
             <div class="footer-right">
             1.1.0
@@ -73,8 +73,8 @@
         <script src="{{ asset('stisla/js/stisla.js') }}"></script>
         <script src="{{ asset('stisla/js/scripts.js') }}"></script>
 
-        <script src="{{ asset('assets/js/scripts.js') }}"></script>
-        <script src="{{ asset('assets/js/custom.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/scripts.js') }}"></script>
+        <script src="{{ asset('assets/js/custom.js') }}"></script> --}}
 
         <!-- Page Specific JS File -->
         <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>

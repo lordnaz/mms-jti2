@@ -27,6 +27,14 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs4/1.1.0/dataTables.bootstrap4.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-select-bs4/1.3.3/select.bootstrap4.css">
 
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+        <link rel="stylesheet" href="{{ asset('selectric/public/selectric.css') }}">
+
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+
         <livewire:styles />
 
         <!-- Scripts -->
@@ -61,7 +69,7 @@
 
         <footer class="main-footer">
             <div class="footer-left">
-            Copyright &copy; 2021 <div class="bullet"></div> Develop By <a href="https://github.com/lordnaz">Muhamad Nazrul Hanif</a>
+            Copyright &copy; 2021 <div class="bullet"></div> Develop By <a href="https://github.com/lordnaz" target="_blank">Muhamad Nazrul Hanif</a>
             </div>
             <div class="footer-right">
             1.1.0
@@ -85,8 +93,17 @@
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/select.bootstrap4.min.js"></script>
 
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script defer src="{{ asset('selectric/public/jquery.selectric.js') }}"></script>
+
         <script src="{{ asset('stisla/js/stisla.js') }}"></script>
         <script src="{{ asset('stisla/js/scripts.js') }}"></script>
+
+        {{-- <script src="{{ asset('assets/js/scripts.js') }}"></script>
+        <script src="{{ asset('assets/js/custom.js') }}"></script> --}}
+
+        <!-- Page Specific JS File -->
+        <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>
 
         <livewire:scripts />
         <script src="{{ mix('js/app.js') }}" defer></script>

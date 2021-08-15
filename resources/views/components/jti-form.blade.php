@@ -160,10 +160,10 @@
                                     <label>1.1 - International</label>
                                     <select name="pack_inter[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
-                                        <option value="inter_household">Household effects</option>
-                                        <option value="inter_office">Office goods</option>
-                                        <option value="inter_industry">Industrial Equipment</option>
-                                        <option value="inter_vehicle">Vehicle</option>
+                                        <option value="Household effects">Household effects</option>
+                                        <option value="Office goods">Office goods</option>
+                                        <option value="Industrial Equipment">Industrial Equipment</option>
+                                        <option value="Vehicle">Vehicle</option>
                                     </select>
                                 </div>
 
@@ -171,10 +171,10 @@
                                     <label>1.2 - Domestic (Sabah/ Sarawak)</label>
                                     <select name="pack_dome[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
-                                        <option value="dome_household">Household effects</option>
-                                        <option value="dome_office">Office goods</option>
-                                        <option value="dome_industry">Industrial Equipment</option>
-                                        <option value="dome_vehicle">Vehicle</option>
+                                        <option value="Household effects">Household effects</option>
+                                        <option value="Office goods">Office goods</option>
+                                        <option value="Industrial Equipment">Industrial Equipment</option>
+                                        <option value="Vehicle">Vehicle</option>
                                     </select>
                                 </div>
 
@@ -182,10 +182,10 @@
                                     <label>1.3 - Domestic (Penisular Malaysia)</label>
                                     <select name="pack_domw[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
-                                        <option value="domw_household">Household effects</option>
-                                        <option value="domw_office">Office goods</option>
-                                        <option value="domw_industry">Industrial Equipment</option>
-                                        <option value="domw_vehicle">Vehicle</option>
+                                        <option value="Household effects">Household effects</option>
+                                        <option value="Office goods">Office goods</option>
+                                        <option value="Industrial Equipment">Industrial Equipment</option>
+                                        <option value="Vehicle">Vehicle</option>
                                     </select>
                                 </div>
 
@@ -193,10 +193,10 @@
                                     <label>1.4 - Storage</label>
                                     <select name="pack_storage[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
-                                        <option value="storage_household">Household effects</option>
-                                        <option value="storage_office">Office goods</option>
-                                        <option value="storage_industry">Industrial Equipment</option>
-                                        <option value="storage_vehicle">Vehicle</option>
+                                        <option value="Household effects">Household effects</option>
+                                        <option value="Office goods">Office goods</option>
+                                        <option value="Industrial Equipment">Industrial Equipment</option>
+                                        <option value="Vehicle">Vehicle</option>
                                     </select>
                                 </div>
 
@@ -229,9 +229,9 @@
                                     <label>3.1 - Export</label>
                                     <select name="ship_export[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
-                                        <option value="exp_container">Container (FCL)</option>
-                                        <option value="exp_console">Console (LCL)</option>
-                                        <option value="exp_airship">Air-shipment</option>
+                                        <option value="Container (FCL)">Container (FCL)</option>
+                                        <option value="Console (LCL)">Console (LCL)</option>
+                                        <option value="Air-shipment">Air-shipment</option>
                                     </select>
                                 </div>
 
@@ -239,9 +239,9 @@
                                     <label>3.2 - Import</label>
                                     <select name="ship_import[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
-                                        <option value="imp_container">Container (FCL)</option>
-                                        <option value="imp_console">Console (LCL)</option>
-                                        <option value="imp_airship">Air-shipment</option>
+                                        <option value="Container (FCL)">Container (FCL)</option>
+                                        <option value="Console (LCL)">Console (LCL)</option>
+                                        <option value="Air-shipment">Air-shipment</option>
                                     </select>
                                 </div>
                             </div>
@@ -260,8 +260,8 @@
                                     <label>4.1 - Destination</label>
                                     <select name="destination[]" class="form-control selectric" multiple="">
                                         <option value="" selected="true" disabled="">Can choose multiple</option>
-                                        <option value="exp_container">Unpack</option>
-                                        <option value="exp_console">Rearrange</option>
+                                        <option value="Unpack">Unpack</option>
+                                        <option value="Rearrange">Rearrange</option>
                                     </select>
                                 </div>
                             </div>

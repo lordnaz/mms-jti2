@@ -38,13 +38,21 @@ class JtiController extends Controller
 
         // return view('components.jti-actual', compact('jti_no'));
 
-        $JtiRecordDetails = JtiPlan::where('running_no', $jti_no)
+        $jti_obj = JtiPlan::where('running_no', $jti_no)
+                                ->join('users', 'users.id', '=', 'jti_plans.assign_to')
+                                ->select('jti_plans.*', 'users.name', 'users.email')
                                 ->get()
                                 ->first();
 
-        $mode = $JtiRecordDetails->mode;
+        $pack_inter = $jti_obj->pack_inter;
+
+        // $pack_inter = explode(',', $pack_inter);
+
+        // return $pack_inter;
+        // die();
         
-        return view('components.jti-actual', compact('jti_no', 'JtiRecordDetails', 'mode'));
+        // return view('components.jti-actual', compact('jti_no', 'JtiRecordDetails', 'mode'));
+        return view('pages.jti.jti-actual', compact('jti_obj', 'pack_inter'));
 
     }
 
@@ -102,6 +110,7 @@ class JtiController extends Controller
         $pack_storage = ($req->pack_storage) ? $pack_storage = implode(',', $pack_storage) : $pack_storage = "";
 
         $pack_other = $req->pack_other;
+        $pack_other = ($req->pack_other) ? $pack_other = $req->pack_other : $pack_other = "";
 
 
         // item under shipment
@@ -329,89 +338,6 @@ class JtiController extends Controller
 
         $data = $req->input();
 
-        // Job Descript List Section 
-        $jobDescArr = array();
-        $jobDescList = "";
-
-        $packing = $req->packing;
-        if($packing != null || $packing != ""){
-            array_push($jobDescArr, $packing);
-        }
-
-        $unpacking = $req->unpacking;
-        if($unpacking != null || $unpacking != ""){
-            array_push($jobDescArr, $unpacking);
-        }
-
-        $removals = $req->removals;
-        if($removals != null || $removals != ""){
-            array_push($jobDescArr, $removals);
-        }
-
-        $trucking = $req->trucking;
-        if($trucking != null || $trucking != ""){
-            array_push($jobDescArr, $trucking);
-        }
-
-        $shipment = $req->shipment;
-        if($shipment != null || $shipment != ""){
-            array_push($jobDescArr, $shipment);
-        }
-
-        $import = $req->import;
-        if($import != null || $import != ""){
-            array_push($jobDescArr, $import);
-        }
-
-        $console = $req->console;
-        if($console != null || $console != ""){
-            array_push($jobDescArr, $console);
-        }
-
-        $intermove = $req->intermove;
-        if($intermove != null || $intermove != ""){
-            array_push($jobDescArr, $intermove);
-        }
-
-        $local = $req->local;
-        if($local != null || $local != ""){
-            array_push($jobDescArr, $local);
-        }
-
-        $international = $req->international;
-        if($international != null || $international != ""){
-            array_push($jobDescArr, $international);
-        }
-
-        $household = $req->household;
-        if($household != null || $household != ""){
-            array_push($jobDescArr, $household);
-        }
-
-        $vehicle = $req->vehicle;
-        if($vehicle != null || $vehicle != ""){
-            array_push($jobDescArr, $vehicle);
-        }
-
-        $office_good = $req->office_good;
-        if($office_good != null || $office_good != ""){
-            array_push($jobDescArr, $office_good);
-        }
-
-        foreach($jobDescArr as $task){
-            $jobDescList .= $task;
-          
-            if (end($jobDescArr) == $task) {
-                # code...
-            }
-            else{
-                $jobDescList .= ", ";
-            }
-        
-            // $jti_subtask=$process->createJTIsubTask($jobid,$task);
-        }
-
-
         // Material List Section 
         $MaterialArr = array();
         $MaterialList = "";
@@ -525,110 +451,107 @@ class JtiController extends Controller
         }
 
 
-        // Job Descript List Section 
-        $EquipmentArr = array();
-        $EquipmentList = "";
-
-        $e1 = $req->e1;
-        if($e1 != null || $e1 != ""){
-            array_push($EquipmentArr, $e1);
-        }
-
-        $e2 = $req->e2;
-        if($e2 != null || $e2 != ""){
-            array_push($EquipmentArr, $e2);
-        }
-
-        $e3 = $req->e3;
-        if($e3 != null || $e3 != ""){
-            array_push($EquipmentArr, $e3);
-        }
-
-        $e4 = $req->e4;
-        if($e4 != null || $e4 != ""){
-            array_push($EquipmentArr, $e4);
-        }
-
-        $e5 = $req->e5;
-        if($e5 != null || $e5 != ""){
-            array_push($EquipmentArr, $e5);
-        }
-
-        $e6 = $req->e6;
-        if($e6 != null || $e6 != ""){
-            array_push($EquipmentArr, $e6);
-        }
-
-        $e7 = $req->e7;
-        if($e7 != null || $e7 != ""){
-            array_push($EquipmentArr, $e7);
-        }
-
-        $e8 = $req->e8;
-        if($e8 != null || $e8 != ""){
-            array_push($EquipmentArr, $e8);
-        }
-
-        $e9 = $req->e9;
-        if($e9 != null || $e9 != ""){
-            array_push($EquipmentArr, $e9);
-        }
-
-        $e10 = $req->e10;
-        if($e10 != null || $e10 != ""){
-            array_push($EquipmentArr, $e10);
-        }
-
-        $e11 = $req->e11;
-        if($e11 != null || $e11 != ""){
-            array_push($EquipmentArr, $e11);
-        }
-
-        $e12 = $req->e12;
-        if($e12 != null || $e12 != ""){
-            array_push($EquipmentArr, $e12);
-        }
-
-        $e13 = $req->e13;
-        if($e13 != null || $e13 != ""){
-            array_push($EquipmentArr, $e13);
-        }
-
-        $e14 = $req->e14;
-        if($e14 != null || $e14 != ""){
-            array_push($EquipmentArr, $e14);
-        }
-
-
-        foreach($EquipmentArr as $equipment){
-            $EquipmentList .= $equipment;
-          
-            if (end($EquipmentArr) == $equipment) {
-                # code...
-            }
-            else{
-                $EquipmentList .= ", ";
-            }
-        
-            // $jti_subtask=$process->createJTIsubTask($jobid,$task);
-        }
-
-
-        // return $EquipmentList;
-
-        // exit();
+         // Job Descript List Section 
+         $EquipmentArr = array();
+         $EquipmentList = "";
+ 
+         $e1 = $req->e1;
+         if($e1 != null || $e1 != ""){
+             array_push($EquipmentArr, $e1);
+         }
+ 
+         $e2 = $req->e2;
+         if($e2 != null || $e2 != ""){
+             array_push($EquipmentArr, $e2);
+         }
+ 
+         $e3 = $req->e3;
+         if($e3 != null || $e3 != ""){
+             array_push($EquipmentArr, $e3);
+         }
+ 
+         $e4 = $req->e4;
+         if($e4 != null || $e4 != ""){
+             array_push($EquipmentArr, $e4);
+         }
+ 
+         $e5 = $req->e5;
+         if($e5 != null || $e5 != ""){
+             array_push($EquipmentArr, $e5);
+         }
+ 
+         $e6 = $req->e6;
+         if($e6 != null || $e6 != ""){
+             array_push($EquipmentArr, $e6);
+         }
+ 
+         $e7 = $req->e7;
+         if($e7 != null || $e7 != ""){
+             array_push($EquipmentArr, $e7);
+         }
+ 
+         $e8 = $req->e8;
+         if($e8 != null || $e8 != ""){
+             array_push($EquipmentArr, $e8);
+         }
+ 
+         $e9 = $req->e9;
+         if($e9 != null || $e9 != ""){
+             array_push($EquipmentArr, $e9);
+         }
+ 
+         $e10 = $req->e10;
+         if($e10 != null || $e10 != ""){
+             array_push($EquipmentArr, $e10);
+         }
+ 
+         $e11 = $req->e11;
+         if($e11 != null || $e11 != ""){
+             array_push($EquipmentArr, $e11);
+         }
+ 
+         $e12 = $req->e12;
+         if($e12 != null || $e12 != ""){
+             array_push($EquipmentArr, $e12);
+         }
+ 
+         $e13 = $req->e13;
+         if($e13 != null || $e13 != ""){
+             array_push($EquipmentArr, $e13);
+         }
+ 
+         $e14 = $req->e14;
+         if($e14 != null || $e14 != ""){
+             array_push($EquipmentArr, $e14);
+         }
+ 
+ 
+         foreach($EquipmentArr as $equipment){
+             $EquipmentList .= $equipment;
+           
+             if (end($EquipmentArr) == $equipment) {
+                 # code...
+             }
+             else{
+                 $EquipmentList .= ",";
+             }
+         
+             // $jti_subtask=$process->createJTIsubTask($jobid,$task);
+         }
 
         $currentdt = date('Y-m-d H:i:s');
 
         $updateJtiPlan = JtiPlan::where('running_no', $req->jti_no)
                         ->update([
+                            'contact' => $req->contact, 
+                            'company_address' => $req->address, 
                             'volume' => $req->est_volume, 
                             'mode' => $req->mode,
-                            'period' => $req->period,
+                            // 'period' => $req->period,
                             'manpower' => $req->manpower,
                             'trucks' => $req->trucks,
-                            'manpower' => $req->manpower,
-                            'job_list' => $jobDescList,
+                            // 'manpower' => $req->manpower,
+                            // 'job_list' => $jobDescList,
                             'material_list' => $MaterialList,
                             'equipment_list' => $EquipmentList,
                             // 'updated_by' => auth()->user()->id,
@@ -636,7 +559,7 @@ class JtiController extends Controller
                             'updated_at' => $currentdt
                         ]);
 
-        return redirect()->route('mytask');
+        return redirect()->route('dashboard');
     }
 
     /**
