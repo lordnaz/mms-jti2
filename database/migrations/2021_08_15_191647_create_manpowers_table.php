@@ -17,7 +17,7 @@ class CreateManpowersTable extends Migration
             $table->id();
             $table->string('employment_type');
             $table->string('staff_id');
-            $table->string('name');
+            $table->string('staff_name');
             $table->string('contact');
             $table->integer('created_by');
             $table->boolean('is_active')->default(true);
