@@ -29,10 +29,15 @@ Route::get('/', function () {
 Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('/dashboard', [MyTaskController::class, "dashboard_view"])->name('dashboard');
 
+
     Route::get('/manpower', [OperationController::class, "show_staff"])->name('manpower');
     Route::view('/manpower/new', "pages.manpower.manpower-new")->name('manpower.new');
     Route::post('/add_manpower', [OperationController::class, 'addManpower']);
     Route::get('/edit_manpower/{ref_id}', [OperationController::class, 'editManpower'])->name('edit_manpower');
+
+
+    Route::get('/tracker', [OperationController::class, "tracker"])->name('tracker');
+
     
     Route::get('/user', [ UserController::class, "index_view" ])->name('user');
     Route::view('/user/new', "pages.user.user-new")->name('user.new');

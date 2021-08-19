@@ -72,4 +72,8 @@ class OperationController extends Controller
         // die();
 
     }
+
+    public function tracker(){
+        return view('pages.tracker.tracker');
+    }
 }
