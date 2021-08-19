@@ -65,7 +65,7 @@
                                 </a>
 
                                 @if($post->new_flag != true)
-                                    <a role="button" href="{{route('jti_actual', $post->running_no)}}" 
+                                    <a role="button" href="{{route('tracker')}}" 
                                     class="btn btn-icon btn-warning" 
                                     data-toggle="tooltip" 
                                     data-placement="top" 
