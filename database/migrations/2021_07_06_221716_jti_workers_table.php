@@ -15,9 +15,11 @@ class JtiWorkersTable extends Migration
     {
         Schema::create('jti_workers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('job_id');
+            $table->string('job_id');
             $table->integer('asset_id');   // asset_id can be transport_id or worker_id
+            $table->string('asset_name');  // can be worker name or transport name/desc
             $table->string('asset_type');  // can be worker type or transport type
+            $table->boolean('active')->default(false);;  // active or not-active
             $table->timestamps();
         });
     }

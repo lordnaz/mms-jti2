@@ -1,16 +1,16 @@
 
 <div class="card">
     <div class="card-header">
-        <h4>Task List</h4>
+        <h4>JTI List</h4>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-striped" id="table-1">
                 <thead>
                     <tr>
-                    <th class="text-center">
+                    {{-- <th class="text-center">
                         #
-                    </th>
+                    </th> --}}
                     <th>JTI No</th>
                     <th>Quotation No</th>
                     <th>Start Date</th>
@@ -23,9 +23,9 @@
                 <tbody>
                     @foreach ($posts as $post)
                         <tr>
-                            <td>
+                            {{-- <td>
                                 {{ $post->id }}
-                            </td>
+                            </td> --}}
                             <td>
                                 {{ $post->running_no }}
                             </td>
@@ -65,13 +65,13 @@
                                 </a>
 
                                 @if($post->new_flag != true)
-                                    <a role="button" href="{{route('tracker')}}" 
+                                    <a role="button" href="{{route('tracker', $post->running_no)}}" 
                                     class="btn btn-icon btn-warning" 
                                     data-toggle="tooltip" 
                                     data-placement="top" 
                                     title="Create & view tracker">
                                         <i class="fas fa-stream"></i>
-                                        Tracker
+                                        Job Tracker
                                     </a>
                                 @endif
                                 

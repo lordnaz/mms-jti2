@@ -1,7 +1,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h4>Manpower List</h4><br>
+        <h4>Transportation List</h4><br>
         
     </div>
     
@@ -13,59 +13,49 @@
             <i class="fas fa-plus"></i>
             Add Manpower
         </a> --}}
-        <a role="button" href="{{route('manpower.new')}}" 
+        <a role="button" href="{{route('transport.new')}}" 
             class="btn btn-icon btn-success float-right" 
             style="margin-bottom: 15px;">
             <i class="fas fa-plus"></i>
-            Add Manpower
+            Add Transport
         </a>
         <div class="table-responsive">
-            <table class="table table-striped" id="table-1">
+            <table class="table table-striped" id="transport_table">
                 <thead>
                     <tr>
                     <th class="text-center">
                         #
                     </th>
-                    <th>Staff ID/References</th>
-                    <th>Name</th>
-                    <th>Contact</th>
-                    <th>Type</th>
+                    <th>Plate No</th>
+                    <th>Description</th>
                     <th>Created By</th>
-                    <th>Last Updated</th>
+                    <th>Created At</th>
                     <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($posts as $post)
+                    @php
+                        $index = 1;
+                    @endphp
+                    @foreach ($datas as $post)
                         <tr>
                             <td>
-                                {{ $post->id }}
+                                {{ $index }}
                             </td>
                             <td>
-                                {{ $post->staff_id }}
+                                {{ $post->plate_no }}
                             </td>
                             <td>
-                                {{ $post->staff_name }}
-                            </td>
-                            <td>
-                                {{ $post->contact }}
-                            </td>
-                            <td>
-                                @if($post->employment_type == "Permanent")
-                                    <div class="badge badge-warning">Permanent</div>
-                                @else
-                                    <div class="badge badge-light">Casual</div>
-                                @endif 
+                                {{ $post->description }}
                             </td>
                             <td>
                                 {{ auth()->user()->find($post->created_by)->name }}
                             </td>
                             <td>
-                                
-                                {{ \Carbon\Carbon::parse($post->updated_at)->format('d/m/Y')}}
+                                {{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y')}}
                             </td>
                             <td>
-                                <a role="button" href="{{route('edit_manpower', $post->id)}}"
+                                <a role="button" href="{{route('edit_transport', $post->id)}}"
                                 class="btn btn-icon btn-warning" 
                                 data-toggle="tooltip" 
                                 data-placement="top" 
@@ -73,7 +63,7 @@
                                     <i class="far fa-edit"></i>
                                     Edit
                                 </a>
-                                <a role="button" href="{{route('remove_manpower', $post->id)}}" 
+                                <a role="button" href="{{route('remove_transport', $post->id)}}" 
                                 class="btn btn-icon btn-danger" 
                                 data-toggle="tooltip" 
                                 data-placement="top" 
@@ -82,13 +72,16 @@
                                     Remove
                                 </a>
                                 
-                            
                                 {{-- <a href="#" class="btn btn-icon btn-primary"><i class="far fa-edit"></i></a> --}}
                                 {{-- <a href="#" class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></a> --}}
                                 {{-- <a role="button" href="/user/edit/{{ $user->id }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a> --}}
                                 {{-- <a role="button" x-on:click.prevent="deleteItem" href="#"><i class="fa fa-16px fa-trash text-red-500"></i></a> --}}
                             </td>
                         </tr>
+
+                        @php
+                            $index++;
+                        @endphp
                     @endforeach
                     
                 </tbody>

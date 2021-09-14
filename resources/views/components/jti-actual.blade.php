@@ -590,7 +590,9 @@
                 <textarea readonly id="special_instruct" name="special_instruct" rows="3" class="form-control">{{$jti->special_instruction}}</textarea>
             </div>
             
-            <button type="submit" class="btn btn-icon icon-left btn-success float-right"><i class="fas fa-check"></i>Confirm</button>
+            @if ($jti->new_flag == 1)
+                <button type="submit" class="btn btn-icon icon-left btn-success float-right"><i class="fas fa-check"></i>Confirm</button>
+            @endif
 
         </form>
 
