@@ -265,7 +265,7 @@ class JtiController extends Controller
         $destinationSwitch = ($req->destinationSwitch) ? true : false;
 
         // create app_doc inside public folder
-        if ($file->move('jti_doc/'.$gen_jti.'/po_doc', $file_name)) {
+        if ($file->move(public_path('jti_doc/'.$gen_jti.'/po_doc'), $file_name)) {
             
             $currentdt = date('Y-m-d H:i:s');
 
