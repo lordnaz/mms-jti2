@@ -47,7 +47,8 @@
 
         <footer class="main-footer" style="margin-top: 0px;">
             <div class="footer-left">
-            Copyright &copy; 2021 <div class="bullet"></div> Develop By <a href="https://github.com/lordnaz" target="_blank">Muhamad Nazrul Hanif</a>
+            {{-- Copyright &copy; 2021 <div class="bullet"></div> Develop By <a href="https://github.com/lordnaz" target="_blank">Muhamad Nazrul Hanif</a> --}}
+            Economy Pack Freight & Services Sdn Bhd &copy; 2021. All rights reserved
             </div>
             <div class="footer-right">
             1.1.0

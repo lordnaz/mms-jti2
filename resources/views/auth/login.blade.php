@@ -31,16 +31,16 @@
             </div>
             <br>
             <div class="block mt-4">
-                <label class="flex items-center">
+                {{-- <label class="flex items-center">
                     <input type="checkbox" class="form-checkbox" name="remember">
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
+                </label> --}}
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+            <div class="flex items-center justify-end mt-8">
+                {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
                     {{ __('New Registration?') }}
-                </a>
+                </a> --}}
 
                 <x-jet-button class="ml-4">
                     {{ __('Login') }}

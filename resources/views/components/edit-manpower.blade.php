@@ -7,7 +7,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <h4>Create New Manpower</h4> 
+                    <h4>Edit Manpower</h4> 
                     {{-- <div class="alert alert-info">
                         <b>JTI No: </b> {{$jti->running_no}}
                     </div> --}}
@@ -17,6 +17,12 @@
                         {{@csrf_field()}}
 
                         {{-- <p>{{$data->employment_type}}</p> --}}
+
+                        <div class="form-group">
+                            {{-- <label>Staff ID or References</label> --}}
+                            <input type="text" value="{{$data->id}}" class="form-control" name="id" id="id" hidden>
+                        </div>
+
                         <div class="form-group">
                             <label>Employment Type</label>
                             <select name="employment_type" class="form-control selectric">

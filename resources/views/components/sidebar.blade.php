@@ -50,8 +50,8 @@ $navigation_links = array_to_object($links);
                 <a class="nav-link" href="{{ route('manpower') }}"><i class="fas fa-user-plus"></i><span>Manpower</span></a>
             </li>
 
-            <li class="{{ Request::routeIs('dashboard') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-truck"></i><span>Transportation</span></a>
+            <li class="{{ Request::routeIs('transport') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('transport') }}"><i class="fas fa-truck"></i><span>Transportation</span></a>
             </li>
         </ul>
     </aside>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User as User;
 use App\Models\JtiPlan as JtiPlan;
+use App\Models\JobDetails as JobDetails;
 
 // from external DB 
 use App\Models\JtiSales as JtiSales;
@@ -266,7 +267,7 @@ class JtiController extends Controller
         // create app_doc inside public folder
         if ($file->move('jti_doc/'.$gen_jti.'/po_doc', $file_name)) {
             
-            $currentdt = date('d-m-Y H:i:s');
+            $currentdt = date('Y-m-d H:i:s');
 
             $jtiplan = new JtiPlan;
 
@@ -559,7 +560,86 @@ class JtiController extends Controller
                             'updated_at' => $currentdt
                         ]);
 
+
+        $packingJob = JtiPlan::where('packing_job', true)
+                                ->where('running_no', $req->jti_no)
+                                ->exists();
+        if($packingJob){
+
+            $job_id = $this->generate_id();
+
+            $ticket = JobDetails::create([
+                'job_id' => $job_id,
+                'running_no' => $req->jti_no,
+                'job_type' => 'packing_job',
+                'job_status' => 'CREATED',
+                'created_at' => $currentdt,
+                'updated_at' => $currentdt,
+            ]);
+
+        }
+
+        $truckingJob = JtiPlan::where('trucking_job', true)
+                                ->where('running_no', $req->jti_no)
+                                ->exists();
+        if($truckingJob){
+
+            $job_id = $this->generate_id();
+
+            $ticket = JobDetails::create([
+                'job_id' => $job_id,
+                'running_no' => $req->jti_no,
+                'job_type' => 'trucking_job',
+                'job_status' => 'CREATED',
+                'created_at' => $currentdt,
+                'updated_at' => $currentdt,
+            ]);
+        }
+
+        $shipmentJob = JtiPlan::where('shipment_job', true)
+                                ->where('running_no', $req->jti_no)
+                                ->exists();
+        if($shipmentJob){
+
+            $job_id = $this->generate_id();
+
+            $ticket = JobDetails::create([
+                'job_id' => $job_id,
+                'running_no' => $req->jti_no,
+                'job_type' => 'shipment_job',
+                'job_status' => 'CREATED',
+                'created_at' => $currentdt,
+                'updated_at' => $currentdt,
+            ]);
+        }
+
+        $destinationJob = JtiPlan::where('destination_job', true)
+                                ->where('running_no', $req->jti_no)
+                                ->exists();
+        if($destinationJob){
+
+            $job_id = $this->generate_id();
+
+            $ticket = JobDetails::create([
+                'job_id' => $job_id,
+                'running_no' => $req->jti_no,
+                'job_type' => 'destination_job',
+                'job_status' => 'CREATED',
+                'created_at' => $currentdt,
+                'updated_at' => $currentdt,
+            ]);
+        }
+
         return redirect()->route('dashboard');
+    }
+
+    public function generate_id(){
+        $random_string = chr(rand(65,90)) . chr(rand(65,90)) . chr(rand(65,90));
+        $random_number = rand(1000000000,9999999999);
+
+        $job_id = $random_string.$random_number;
+
+        return $job_id;
     }
 
     /**
