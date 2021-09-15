@@ -64,13 +64,13 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     Route::get('/download_po/{jti_no}/po_doc/{filename}', function ($jti_no, $filename)
     {
-        $filepath = '\/'.$jti_no.'\/po_doc/'.$filename;
+        $path = public_path().'/jti_doc/'.$jti_no.'/po_doc/'.$filename;
 
-        $path = public_path('jti_doc' . $filepath);
+        #$path = public_path('jti_doc' . $filepath);
 
-        if (!File::exists($path)) {
-            abort(404);
-        }
+        #if (!File::exists($path)) {
+        #    abort(404);
+        #}
 
         $headers = array(
                 'Content-Type',
