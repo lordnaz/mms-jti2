@@ -242,8 +242,21 @@ class OperationController extends Controller
                             ->get();
 
         $jtiworkers = JtiWorker::where('job_id', $job_id)
+                            ->where('asset_type', 'worker')
                             ->where('active', true)
                             ->get();
+
+        $transports = Transport::where('is_active', true)
+                                ->get();  
+    
+        $jtitransport = JtiWorker::where('job_id', $job_id)
+                            ->where('asset_type', 'transport')
+                            ->where('active', true)
+                            ->first();
+
+        // return $transports;
+
+        // die();
 
         // message 
         $post_data = TrixRichText::orderBy('id', 'desc')
@@ -255,8 +268,79 @@ class OperationController extends Controller
 
         // $jtiworkers = $jtiworkers->toArray();
 
-        return view('pages.tracker.sub_tracker', compact('job', 'data', 'manpower', 'jtiworkers', 'post_data'));
+        return view('pages.tracker.sub_tracker', compact('job', 'data', 'manpower', 'jtiworkers', 'transports', 'jtitransport', 'post_data'));
 
+    }
+
+    public function assign_transport($job_id, Request $req){
+
+        $data = $req->input();
+
+        // return $data;
+
+        // die();
+
+        $currentdt = date('Y-m-d H:i:s');
+
+        $transport = Transport::where('id', $req->transport_assign)
+                            ->first();
+
+        $check = JtiWorker::where('job_id', $job_id)
+                            ->where('asset_type', 'transport')
+                            ->exists();
+
+        if($check){
+
+            // If exist, replace 
+
+            JtiWorker::where('asset_type', 'transport')
+                ->where('job_id', $job_id)
+                ->limit(1)
+                ->update([
+                    'job_id' => $job_id,
+                    'asset_id' => $req->transport_assign,
+                    'asset_name' => $transport->plate_no,
+                    'asset_type' => 'transport',
+                    'active' => true,
+                    'created_at' => $currentdt,
+                    'updated_at' => $currentdt
+                ]);
+
+        }else{
+            $assign = JtiWorker::create([
+                'job_id' => $job_id,
+                'asset_id' => $req->transport_assign,
+                'asset_name' => $transport->plate_no,
+                'asset_type' => 'transport',
+                'active' => true,
+                'created_at' => $currentdt,
+                'updated_at' => $currentdt
+            ]);
+        }
+
+
+        $posts = Post::create([
+            'job_id' => $job_id,
+            'running_no' => $req->assign_jti_no,
+            'poster_name' => auth()->user()->name,
+            'created_by' => auth()->user()->id
+        ]);
+
+        $postsId = $posts->id;
+
+        $transport_jti = JtiWorker::where('asset_id', $req->transport_assign)
+                            ->where('job_id', $job_id)
+                            ->where('asset_type', 'transport')
+                            ->first();
+
+        TrixRichText::create([
+            'field' => 'system',
+            'model_type' => 'system',
+            'model_id' => $postsId,
+            'content' => '<div><i>[System Alert]&nbsp;</i><b>'.$transport_jti->asset_name.' ('.$transport->description.')</b> has been <span class="text-success font-weight-bold">Assigned</span> to the task by <b>'.auth()->user()->name.'</b></div>'
+        ]);
+
+        return redirect()->route('sub_tracker', ['job_id' => $job_id]);
     }
 
     public function assign_worker($job_id, Request $req){
@@ -274,6 +358,7 @@ class OperationController extends Controller
 
         $check = JtiWorker::where('asset_id', $req->worker_assign)
                             ->where('job_id', $job_id)
+                            ->where('asset_type', 'worker')
                             ->exists();
 
         if($check){
@@ -306,6 +391,7 @@ class OperationController extends Controller
 
         $staff = JtiWorker::where('asset_id', $req->worker_assign)
                             ->where('job_id', $job_id)
+                            ->where('asset_type', 'worker')
                             ->first();
 
         TrixRichText::create([
@@ -335,6 +421,7 @@ class OperationController extends Controller
 
         $staff = JtiWorker::where('asset_id', $asset_id)
                             ->where('job_id', $job_id)
+                            ->where('asset_type', 'worker')
                             ->first();
 
         TrixRichText::create([

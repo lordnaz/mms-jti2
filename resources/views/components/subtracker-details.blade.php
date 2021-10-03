@@ -234,7 +234,7 @@
                                             $worker_arr = array();
 
                                             foreach ($workers as $val) {
-                                                array_push($worker_arr, $val->asset_name);
+                                                array_push($worker_arr, $val->asset_id);
                                             }
 
                                         @endphp
@@ -242,7 +242,7 @@
                                             <option value="" selected="true" disabled="">Add Manpower</option>
                                             @foreach($manpower as $manpower)
 
-                                                @if (in_array($manpower->staff_name, $worker_arr))
+                                                @if (in_array($manpower->id, $worker_arr))
                                                     {{-- <option value="">{{ $manpower->staff_name }} Found!</option> --}}
                                                 @else
                                                     <option value="{{ $manpower->id }}">{{ $manpower->staff_name }} ({{$manpower->employment_type}})</option>
@@ -286,7 +286,7 @@
                                             $worker_arr = array();
 
                                             foreach ($workers as $val) {
-                                                array_push($worker_arr, $val->asset_name);
+                                                array_push($worker_arr, $val->asset_id);
                                             }
 
                                         @endphp
@@ -294,7 +294,7 @@
                                             <option value="" selected="true" disabled="">Add Driver</option>
                                             @foreach($manpower as $manpower)
 
-                                                @if (in_array($manpower->staff_name, $worker_arr))
+                                                @if (in_array($manpower->id, $worker_arr))
                                                     {{-- <option value="">{{ $manpower->staff_name }} Found!</option> --}}
                                                 @else
                                                     <option value="{{ $manpower->id }}">{{ $manpower->staff_name }} ({{$manpower->employment_type}})</option>
@@ -314,6 +314,43 @@
                                 <div class="ticket-divider"></div>
                 
                                 <h1 class="section-title">Assigned Transportation</h1>
+
+                                {{-- @foreach ($transports as $transport)
+                                    <figure class="avatar mr-2" style="margin-bottom: 15px; margin-top: 15px;">
+                                        <img src="../assets/img/avatar/avatar-{{rand(1,5)}}.png" alt="..." title="{{$transport->asset_name}}">
+                                        <a href="{{ route('remove_worker', ['asset_id' => $worker->asset_id, 'job_id' => $worker->job_id, 'jti_no' =>$job->running_no]) }}">
+                                            <img src="../img/remove.png" class="avatar-icon" alt="..." title="Remove">
+                                        </a>
+                                    </figure>
+                                @endforeach --}}
+
+                                <form method="POST" action="{{ route('assign_transport', $job->job_id) }}">
+                                    @csrf
+            
+                                    <div class="form-group col-md-6">
+                                        <label for="assignto" class="block text-sm font-medium text-gray-700">Assigned Transportation</label>
+            
+                                        <select id="transport_assign" name="transport_assign" class="form-control selectric">
+                                            <option value="" selected="true" disabled="">Select Transport</option>
+                                            @foreach($translist as $transport)
+                                                @if ($trans != null)
+                                                    <option value="{{ $transport->id }}" @if($transport->id == $trans->asset_id) selected @endif>{{ $transport->plate_no }} ({{ $transport->description }})</option>
+                                                @else
+                                                    <option value="{{ $transport->id }}">{{ $transport->plate_no }} ({{ $transport->description }})</option>
+                                                @endif
+                                                
+                                            @endforeach
+                                        </select>
+
+                                        <input type="text" class="form-control" name="assign_jti_no" value="{{ $job->running_no }}" hidden>
+            
+                                        <div class="text-right" style="margin-top: 15px;">
+                                            <button type="submit" class="btn btn-warning text-dark">
+                                                Assign
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                                 
                             @endif
                             
