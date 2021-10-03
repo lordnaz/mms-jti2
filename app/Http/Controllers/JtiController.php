@@ -57,6 +57,35 @@ class JtiController extends Controller
 
     }
 
+    public function store_quote($quote_no){
+
+        // return $quote_no;
+        // die();
+
+        return view('components.store_quotation', compact('quote_no'));
+    }
+
+    public function upload_quotation(Request $req){
+
+        $quote_no = $req->quote_no;
+
+        //file attachment section
+        $file = $req->file('file-upload');
+        // $po_encoded = base64_encode(file_get_contents($req->file('file-upload')));
+        // $mime_type = $fil?e->getClientmimeType();
+        $file_name = $file->getClientoriginalName();
+        $mime_type = $file->getClientmimeType();
+
+        // create app_doc inside public folder
+        if ($file->move(public_path('quote_doc/'.$quote_no), $file_name)) {
+            
+           // do none
+
+        };
+
+        return redirect()->route('store_quote', ['quote_no' => $req->quote_no])->with('msgg', 'quantity');
+    }
+
     public function getAllUser($quote_no){
 
         $users = User::all();

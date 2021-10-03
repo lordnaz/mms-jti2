@@ -89,5 +89,8 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 Route::get('/jti/{quote_no}', [JtiController::class, 'getAllUser'])->where('quote_no', '.*')->name('jti_form');
 Route::post('/submit_jti', [JtiController::class, 'submitForm']);
 
+Route::get('/store_quote/{quote_no}', [JtiController::class, 'store_quote'])->where('quote_no', '.*')->name('store_quote');
+Route::post('/upload_quotation', [JtiController::class, 'upload_quotation']);
+
 // url to download impact
 
