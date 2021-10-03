@@ -91,11 +91,11 @@ class JtiController extends Controller
         $users = User::all();
 
         $quotation = Quotation::where('identifier', $quote_no)
-                                    ->get()
+                                    // ->get()
                                     ->first();
 
         $company = CompanyClient::where('id', $quotation['created_for_company'])
-                                    ->get()
+                                    // ->get()
                                     ->first();
         
         $state = States::where('id', $company['state_id'])
@@ -111,7 +111,7 @@ class JtiController extends Controller
                                     ->first();  
                                     
         $officer = UserSales::where('id', $quotation['created_for_pic'])
-                                    ->get()
+                                    // ->get()
                                     ->first();
                             
 
