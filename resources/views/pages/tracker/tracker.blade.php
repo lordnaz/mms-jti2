@@ -10,9 +10,8 @@
     </x-slot>
 
     <div>
-        {{-- <livewire:create-manpower/> --}}
-        {{-- <x-edit-manpower :data="$data"></x-edit-manpower> --}}
-        <x-tracker-details :data="$data" :job="$job"></x-tracker-details>
+
+        <x-tracker-details :data="$data" :job="$job" :list="$list_user"></x-tracker-details>
     </div>
 </x-app-layout>
 
@@ -21,6 +20,18 @@
         
         var quill = new Quill('#editor', {
             theme: 'snow'
+        });
+
+        $('#assignee_panel').hide();
+
+
+        $('#assigneeSwitch').change(function() {
+            // this will contain a reference to the checkbox   
+            if (this.checked) {
+                $('#assignee_panel').show(500);
+            } else {
+                $('#assignee_panel').hide(500);
+            }
         });
 
     });

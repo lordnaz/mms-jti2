@@ -39,6 +39,8 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
 
     Route::get('/tracker/{jti_no}', [OperationController::class, "tracker"])->name('tracker');
 
+    Route::post('/change_assignee/{jti_no}', [OperationController::class, "change_assignee"])->name('change_assignee');
+
     Route::get('/sub_tracker/{job_id}', [OperationController::class, "sub_tracker"])->name('sub_tracker');
     Route::post('/assign_worker/{job_id}', [OperationController::class, 'assign_worker'])->name('assign_worker');
     Route::post('/assign_transport/{job_id}', [OperationController::class, 'assign_transport'])->name('assign_transport');

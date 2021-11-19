@@ -1,5 +1,7 @@
 @php
     // dd($data);
+
+    // dd($list_user);
 @endphp
 <div class="card">
     {{-- <div class="card-header">
@@ -104,7 +106,42 @@
           <div class="ticket-description">
             <div class="ticket-divider"></div>
 
+            <div class="form-group">
+                <label class="mt-2">
+                    <input type="checkbox" id="assigneeSwitch" name="assigneeSwitch" class="custom-switch-input">
+                    <span class="custom-switch-indicator"></span>
+                    <span class="custom-switch-description"> Assign to new PIC?</span>
+                </label>
+            </div>
+
+            <div id="assignee_panel">
+                <form method="POST" action="{{ route('change_assignee', $data->running_no) }}">
+                    @csrf
+
+                    <div class="form-group col-md-6">
+                        <label for="assignto" class="block text-sm font-medium text-gray-700">Assign new Assignee</label>
+
+                        <select id="new_assignee" name="new_assignee" class="form-control selectric">
+                            <option value="" selected="true" disabled="">Assign To</option>
+                            @foreach($list as $user)
+
+                                <option value="{{ $user->id }}">{{ $user->name }} @if($user->id == auth()->user()->id) <span style="color:red;"> (Yourself) </span> @endif</option>
+    
+                            @endforeach
+                        </select>
+                        <input type="text" class="form-control" name="assign_jti_no" value="{{ $data->running_no }}" hidden>
+
+                        <div class="text-right" style="margin-top: 15px;">
+                            <button type="submit" class="btn btn-warning text-dark">
+                                Assign
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
             <h1 class="section-title">Master Completion Status</h1>
+            
 
                 <div class="row mt-4">
                     <div class="col-12 col-lg-12">

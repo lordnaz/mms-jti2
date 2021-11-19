@@ -197,8 +197,37 @@ class OperationController extends Controller
         $job = JobDetails::where('running_no', $jti_no)
                             ->get();
 
-        return view('pages.tracker.tracker', compact('data', 'job'));
+        $list_user = User::get();
+
+        // return $list_user;
+
+        // die();
+
+        return view('pages.tracker.tracker', compact('data', 'job', 'list_user'));
         // return view('components.job_tracker_main', compact('post_data', 'ticket_collection', 'ticket_id', 'printers'));
+    }
+
+    public function change_assignee(Request $req, $jti_no){
+
+        $currentdt = date('Y-m-d H:i:s');
+
+        $update = JtiPlan::where('running_no', $jti_no)
+                                ->update([
+                                    'assign_to' => $req->new_assignee,
+                                    'updated_at' => $currentdt
+                                ]);
+
+        if($update){
+            $data = JtiPlan::where('running_no', $jti_no)
+                                    ->first();
+
+            $job = JobDetails::where('running_no', $jti_no)
+                                ->get();
+
+            $list_user = User::get();
+        }
+        
+        return view('pages.tracker.tracker', compact('data', 'job', 'list_user'));
     }
 
     public function set_job_status(Request $req, $job_id){

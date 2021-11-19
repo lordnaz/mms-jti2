@@ -61,7 +61,7 @@
 
                             <div class="form-group">
                                 <label>Est. Volume</label>
-                                <input type="number" name="est_volume" id="est_volume" autocomplete="given-name" class="form-control">
+                                <input type="number" name="est_volume" id="est_volume" autocomplete="given-name" class="form-control" required>
                             </div>
 
                             <div class="form-group">
@@ -96,7 +96,7 @@
 
                             <div class="form-group">
                                 <label>Period</label>
-                                <input type="text" name="period" id="period" class="form-control">
+                                <input type="text" name="period" id="period" class="form-control" required>
                             </div>
 
                             <div class="form-group">
@@ -105,13 +105,13 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Destination (From)</label>
-                                            <input type="text" name="from" id="from" class="form-control">
+                                            <input type="text" name="from" id="from" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Destination (To)</label>
-                                            <input type="text" name="to" id="to" class="form-control">
+                                            <input type="text" name="to" id="to" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -444,7 +444,7 @@
                             <div class="form-group">
                                 <label for="assignto" class="block text-sm font-medium text-gray-700">Assign to (Project Manager)</label>
 
-                                <select id="assignto" name="assignto" class="form-control selectric">
+                                <select id="assignto" name="assignto" class="form-control selectric" required>
                                     <option value="" selected="true" disabled="">Select Project Manager</option>
                                     @foreach($users as $user)
                                         <option value="{{ $user->id }}" @if($user->id == $user->name) selected @endif>{{ $user->name }}</option>

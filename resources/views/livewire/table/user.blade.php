@@ -15,7 +15,7 @@
                     @include('components.sort-icon', ['field' => 'email'])
                 </a></th>
                 <th><a wire:click.prevent="sortBy('created_at')" role="button" href="#">
-                    Tanggal Dibuat
+                    Date Created
                     @include('components.sort-icon', ['field' => 'created_at'])
                 </a></th>
                 <th>Action</th>

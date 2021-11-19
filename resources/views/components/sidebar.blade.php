@@ -53,6 +53,10 @@ $navigation_links = array_to_object($links);
             <li class="{{ Request::routeIs('transport') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('transport') }}"><i class="fas fa-truck"></i><span>Transportation</span></a>
             </li>
+
+            <li class="{{ Request::routeIs('user') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user') }}"><i class="fas fa-user"></i><span>Users</span></a>
+            </li>
         </ul>
     </aside>
 </div>

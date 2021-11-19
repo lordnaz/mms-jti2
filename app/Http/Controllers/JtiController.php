@@ -17,6 +17,9 @@ use App\Models\CountrySales as Countries;
 use App\Models\JtiCreatedSales as JtiCreated;
 use App\Models\JtiJob as JtiJob;
 
+use App\Mail\NewJtiNotification;
+use Illuminate\Support\Facades\Mail;
+
 class JtiController extends Controller
 {
     /**
@@ -68,6 +71,8 @@ class JtiController extends Controller
     public function upload_quotation(Request $req){
 
         $quote_no = $req->quote_no;
+
+        $quote_no = str_replace("/", "_", $quote_no);
 
         //file attachment section
         $file = $req->file('file-upload');
@@ -359,6 +364,19 @@ class JtiController extends Controller
                 $jti_created->save();
             }
             // JtiCreated
+
+            $user = User::where('id', $req->assignto)->first();
+
+            $details = [
+                'jti_no' => $gen_jti,
+                'pic_name' => $user->name,
+                'requester' => $req->sales_guy,
+                'status' => 'NEW REQUEST'
+            ];
+
+
+            Mail::to($user->email)
+                    ->send(new NewJtiNotification($details));
         };
 
         return redirect()->route('jti_form', ['quote_no' => $req->quote_no]);
